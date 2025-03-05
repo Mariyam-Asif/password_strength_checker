@@ -39,7 +39,7 @@ def check_password_strength(password):
     if re.search(r"[!@#$%^&*]", password):
         score += 1
     else:
-        feedback.append("Include at least one speacial character (!@#$%^&*).")
+        feedback.append("Include at least one special character (!@#$%^&*).")
 
     return score, feedback
 
@@ -130,7 +130,7 @@ if password:
     if score >= 5:
         st.success("✅ Strong Password!")
     elif score >= 3:
-        st.warning("⚠️ Moderate Password - Consider adding more security fratures.")
+        st.warning("⚠️ Moderate Password - Consider adding more security features.")
     else:
         st.error("❌ Weak Password - Improve it with the suggestions below.")
 
