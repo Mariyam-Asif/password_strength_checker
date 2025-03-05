@@ -84,14 +84,18 @@ def estimate_cracking_time(password):
     entropy = len(password) * math.log2(charset_size)
     seconds_to_crack = 2 ** entropy / (10 ** 12)
 
-    if seconds_to_crack < 60:
-        return "Time to crack: **A few seconds**"
-    elif seconds_to_crack < 3600:
-        return f"Time to crack: **{int(seconds_to_crack // 60)} minutes**"
-    elif seconds_to_crack < 86400:
-        return f"Time to crack: **{int(seconds_to_crack // 3600)} hours**"
-    elif seconds_to_crack < 31536000:
-        return f"Time to crack: **{int(seconds_to_crack // 86400)} days**"
+    if score < 3:
+        if seconds_to_crack < 60:
+            return "Time to crack: **A few seconds**"
+        elif seconds_to_crack < 3600:
+            return f"Time to crack: **{int(seconds_to_crack // 60)} minutes**"
+        elif seconds_to_crack < 86400:
+            return f"Time to crack: **{int(seconds_to_crack // 3600)} hours**"
+        else:
+            return f"Time to crack: **{int(seconds_to_crack // 86400)} days**"
+        
+    if seconds_to_crack < 31536000:
+        return f"Time to crack: **At least 1 year**"
     elif seconds_to_crack < 3153600000:
         return f"Time to crack: **{int(seconds_to_crack // 31536000)} years**"
     elif seconds_to_crack < 3153600000000:
